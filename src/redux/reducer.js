@@ -1,11 +1,6 @@
 'use strict';
 
-let initialState = {
-  greeting: 'Greetings!',
-  peopleModalOpen: false
-};
-
-export default (state=initialState, action) => {
+export default (state, action) => {
   switch (action.type) {
   case 'SET_GREETING':
     return {
@@ -20,7 +15,7 @@ export default (state=initialState, action) => {
   case 'FETCH_PEOPLE':
     return {
       ...state,
-      people: action.people
+      people: action.payload.people
     };
   case 'DELETE_PERSON':
     return state;

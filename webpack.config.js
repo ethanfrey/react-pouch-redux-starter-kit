@@ -17,13 +17,13 @@ module.exports = {
     configFile: '.eslintrc'
   },
   module: {
-    preLoaders: [
-      {
-        test: /.*\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
-      }
-    ],
+    // preLoaders: [
+    //   {
+    //     test: /.*\.js$/,
+    //     exclude: /node_modules/,
+    //     loader: "eslint-loader"
+    //   }
+    // ],
     loaders: [
       {
         test: /\.css$/,

@@ -9,6 +9,12 @@ import DevTools from '../components/dev-tools';
 
 const logger = reduxLogger();
 
+let initialState = {
+  greeting: 'Greetings!',
+  peopleModalOpen: false
+};
+
+
 /*
 let createStoreWithMiddleware = compose(
   applyMiddleware(thunk, promise, logger)(createStore),
@@ -18,7 +24,7 @@ let createStoreWithMiddleware = compose(
 
 const store = createStore(
     reducer,
-    {},
+    initialState,
     compose(
       applyMiddleware(thunk, promise, logger),
       DevTools.instrument()

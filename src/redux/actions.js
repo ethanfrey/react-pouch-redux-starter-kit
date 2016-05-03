@@ -16,15 +16,28 @@ export function togglePeopleModal() {
   };
 }
 
+export function pending() {
+  return {
+    type: 'SHOW_PENDING'
+  };
+}
+
+
 export function fetchPeople() {
+  store.dispatch(pending());
   return db.allDocs({
     include_docs: true // eslint-disable-line camelcase
   }).then(people => {
+    store.dispatch(completed());
     return {
       type: 'FETCH_PEOPLE',
-      people: mapDocsFromPouch(people)
+      payload: {
+        people: mapDocsFromPouch(people)
+      }
     };
   }).catch(err => {
+    store.dispatch(completed());
+    store.dispatch(registerError(err));
     throw err;
   });
 }
