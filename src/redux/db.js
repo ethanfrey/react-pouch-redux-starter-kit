@@ -5,6 +5,8 @@ import PouchDB from 'pouchdb';
 import { fetchPeople } from './actions';
 
 let db = new PouchDB('app');
+let remoteCouch = 'http://192.168.0.244:5984/app';
+let opts = {live: true};
 
 db.changes({
   live: true,
@@ -12,6 +14,9 @@ db.changes({
   since: 'now'
 }).on('change', changeCallback)
   .on('error', console.log.bind(console));
+
+db.replicate.to(remoteCouch, opts);
+db.replicate.from(remoteCouch, opts);
 
 function changeCallback() {
   store.dispatch(fetchPeople());
